@@ -9,6 +9,8 @@ import { wordsList } from "./data/words";
 
 // Imports de COMPONENTES
 import StartScreen from "./components/StartScreen";
+import Game from "./components/Game";
+import GameOver from "./components/GameOver";
 
 const stages = [
   { id: 1, name: "start" },
@@ -17,7 +19,6 @@ const stages = [
 ];
 
 function App() {
-
   // Inicia o app com o estágio na posição 0 ou "start"
   const [gameStage, steGameStage] = useState(stages[0].name);
 
@@ -25,9 +26,9 @@ function App() {
     <div className="App">
       <h1>Palavra Secreta</h1>
       {/* verifica o Estágio do jogo e exibe o componente necessário*/}
-      {gameStage === 'start' && <StartScreen />}
-      {gameStage === 'game' && <StartScreen />}
-      {gameStage === 'end' && <StartScreen />}
+      {gameStage === "start" && <StartScreen />}
+      {gameStage === "game" && <Game />}
+      {gameStage === "end" && <GameOver />}
     </div>
   );
 }
