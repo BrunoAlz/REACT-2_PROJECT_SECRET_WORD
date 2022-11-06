@@ -20,21 +20,22 @@ const stages = [
 
 function App() {
   // Inicia o app com o estágio na posição 0 ou "start"
-  const [gameStage, steGameStage] = useState(stages[0].name);
+  const [gameStage, setGameStage] = useState(stages[0].name);
   const [words] = useState(wordsList);
 
   // Função para iniciar o jogo, mudando o stage para "game"
   const startGame = () => {
-    steGameStage(stages[1].name);
+    setGameStage(stages[1].name);
   };
 
   // Processa as Letras Enviadas pelo usuário
   const verifyLetter = () => {
-    steGameStage(stages[2].name);
+    setGameStage(stages[2].name);
   };
 
+  // Reinicia o game.
   const retry = () => {
-    steGameStage(stages[0].name);
+    setGameStage(stages[0].name);
   };
 
   return (
