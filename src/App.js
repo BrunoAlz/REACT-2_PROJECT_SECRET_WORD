@@ -21,12 +21,17 @@ const stages = [
 function App() {
   // Inicia o app com o estágio na posição 0 ou "start"
   const [gameStage, steGameStage] = useState(stages[0].name);
+  const [words] = useState(wordsList);
+
+  // Função para iniciar o jogo, mudando o stage para "game"
+  const startGame = () => {
+    steGameStage(stages[1].name);
+  };
 
   return (
     <div className="App">
-      <h1>Palavra Secreta</h1>
       {/* verifica o Estágio do jogo e exibe o componente necessário*/}
-      {gameStage === "start" && <StartScreen />}
+      {gameStage === "start" && <StartScreen startGame={startGame} />}
       {gameStage === "game" && <Game />}
       {gameStage === "end" && <GameOver />}
     </div>
