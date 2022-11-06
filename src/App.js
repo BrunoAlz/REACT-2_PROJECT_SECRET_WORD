@@ -28,12 +28,21 @@ function App() {
     steGameStage(stages[1].name);
   };
 
+  // Processa as Letras Enviadas pelo usuário
+  const verifyLetter = () => {
+    steGameStage(stages[2].name);
+  };
+
+  const retry = () => {
+    steGameStage(stages[0].name);
+  };
+
   return (
     <div className="App">
       {/* verifica o Estágio do jogo e exibe o componente necessário*/}
       {gameStage === "start" && <StartScreen startGame={startGame} />}
-      {gameStage === "game" && <Game />}
-      {gameStage === "end" && <GameOver />}
+      {gameStage === "game" && <Game verifyLetter={verifyLetter} />}
+      {gameStage === "end" && <GameOver retry={retry} />}
     </div>
   );
 }
