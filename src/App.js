@@ -37,16 +37,16 @@ function App() {
     const word =
       words[category][Math.floor(Math.random() * words[category].length)];
 
-    return [word, category];
+    return {word, category};
   };
 
   // Função para iniciar o jogo, mudando o stage para "game"
   const startGame = () => {
     // Chama a função para pegar a categoria e a palavra, no Inicio do game
     const { word, category } = pickedWordAndCategory();
-
     // Cria um Array com as Letras da Palavra selecionada
     let wordLetters = word.split("");
+    console.log(wordLetters)
     wordLetters = wordLetters.map((lettter) => lettter.toLowerCase());
 
     // Preenchendo os Estados
