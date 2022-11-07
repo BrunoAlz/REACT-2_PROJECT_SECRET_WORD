@@ -27,6 +27,11 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState("");
   const [letters, setLetters] = useState([]);
 
+  const [guessedLetters, setGuessedLetters] = useState([]);
+  const [wrongLetters, setWrongdLetters] = useState([]);
+  const [guesses, setGuesses] = useState(5);
+  const [score, setScore] = useState(0);
+
   const pickedWordAndCategory = () => {
     // Captura as chaves do Objeto Words, que são as Categorias
     const categories = Object.keys(words);
@@ -37,7 +42,7 @@ function App() {
     const word =
       words[category][Math.floor(Math.random() * words[category].length)];
 
-    return {word, category};
+    return { word, category };
   };
 
   // Função para iniciar o jogo, mudando o stage para "game"
@@ -46,7 +51,6 @@ function App() {
     const { word, category } = pickedWordAndCategory();
     // Cria um Array com as Letras da Palavra selecionada
     let wordLetters = word.split("");
-    console.log(wordLetters)
     wordLetters = wordLetters.map((lettter) => lettter.toLowerCase());
 
     // Preenchendo os Estados
