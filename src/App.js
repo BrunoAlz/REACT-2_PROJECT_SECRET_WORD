@@ -51,12 +51,12 @@ function App() {
     const { word, category } = pickedWordAndCategory();
     // Cria um Array com as Letras da Palavra selecionada
     let wordLetters = word.split("");
-    wordLetters = wordLetters.map((lettter) => lettter.toLowerCase());
+    wordLetters = wordLetters.map((l) => l.toLowerCase());
 
     // Preenchendo os Estados
     setPickedWord(word);
     setPickedCategory(category);
-    setLetters(letters);
+    setLetters(wordLetters);
 
     setGameStage(stages[1].name);
   };
@@ -75,7 +75,18 @@ function App() {
     <div className="App">
       {/* verifica o Estágio do jogo e exibe o componente necessário*/}
       {gameStage === "start" && <StartScreen startGame={startGame} />}
-      {gameStage === "game" && <Game verifyLetter={verifyLetter} />}
+      {gameStage === "game" && (
+        <Game
+          verifyLetter={verifyLetter}
+          pickedWord={pickedWord}
+          pickedCategory={pickedCategory}
+          letters={letters}
+          guessedLetters={guessedLetters}
+          wrongLetters={wrongLetters}
+          guesses={guesses}
+          score={score}
+        />
+      )}
       {gameStage === "end" && <GameOver retry={retry} />}
     </div>
   );
