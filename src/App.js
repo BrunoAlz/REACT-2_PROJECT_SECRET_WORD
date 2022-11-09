@@ -28,7 +28,7 @@ function App() {
   const [letters, setLetters] = useState([]);
 
   const [guessedLetters, setGuessedLetters] = useState([]);
-  const [wrongLetters, setWrongdLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
   const [guesses, setGuesses] = useState(5);
   const [score, setScore] = useState(0);
 
@@ -81,15 +81,33 @@ function App() {
         normalizedLetter,
       ]);
     } else {
-      setWrongdLetters((actualWrongLetters) => [
+      setWrongLetters((actualWrongLetters) => [
         ...actualWrongLetters,
         normalizedLetter,
       ]);
+
+      setGuesses((actualGuesses) => actualGuesses - 1);
     }
   };
 
+  const clearLetterStates = () => {
+    setGuessedLetters([]);
+    setWrongLetters([]);
+  };
+
+  // useEffect Monitora um dado, e realiza uma ação para este dado.
+  useEffect(() => {
+    if (guesses <= 0) {
+      setGameStage(stages[2].name);
+      clearLetterStates();
+    }
+  }, [guesses]);
+
   // Reinicia o game.
   const retry = () => {
+    setScore(0);
+    setGuesses(5);
+
     setGameStage(stages[0].name);
   };
 
